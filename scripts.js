@@ -5,7 +5,7 @@ let page = 1;
 let matches = books;
 
 // Function to render book previews
-function renderBookPreviews() {
+/*function renderBookPreviews() {
   const starting = document.createDocumentFragment();
 
   for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
@@ -65,11 +65,11 @@ for (const [id, name] of Object.entries(authors)) {
 document.querySelector("[data-search-authors]").appendChild(authorsHtml);
 }
 
-populateDropDownOptions();
+populateDropDownOptions();*/
 
 
 // Function for color theme: either night or day
-function setColorTheme() {
+/*function setColorTheme() {
   document.querySelector("[data-settings-form]")
 .addEventListener("submit", (event) => {
   event.preventDefault();
@@ -127,7 +127,7 @@ function setColorTheme() {
     `;
 }
 
-setColorTheme();
+setColorTheme();*/
 
 
 // Event Listerners

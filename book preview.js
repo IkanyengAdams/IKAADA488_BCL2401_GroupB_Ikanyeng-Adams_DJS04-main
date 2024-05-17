@@ -1,25 +1,50 @@
 import { authors } from './data.js';
 
-class BookPreview extends HtmlElement {
+class BookPreview extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this.shadowRoot.innerHML = `
-    <link rel="stylesheet" href="book-preview-styles.css">
-      
-    <dialog class="overlay" data-list-active>
-    <div class="overlay__preview"><img class="overlay__blur" data-list-blur src=""/><img class="overlay__image" data-list-image src=""/></div>
-    <div class="overlay__content">
-      <h3 class="overlay__title" data-list-title></h3>
-      <div class="overlay__data" data-list-subtitle></div>
-      <p class="overlay__data overlay__data_secondary" data-list-description></p>
-    </div>
+  }
 
-    <div class="overlay__row">
-      <button class="overlay__button overlay__button_primary" data-list-close>Close</button>
-    </div>
-  </dialog>
-  `;
+  set book(book) {
+    this.render(book);
+  }
+
+  render(book) {
+    this.shadowRoot.innerHTML = `
+      <style>
+        .preview {
+          display: flex;
+          align-items: center;
+          padding: 10px;
+        }
+        .preview__image {
+          width: 50px;
+          height: 75px;
+          margin-right: 10px;
+        }
+        .preview__info {
+          display: flex;
+          flex-direction: column;
+        }
+        .preview__title {
+          font-size: 16px;
+          margin: 0;
+        }
+        .preview__author {
+          font-size: 14px;
+          color: gray;
+        }
+      </style>
+      <button class="preview" data-preview="${book.id}">
+        <img class="preview__image" src="${book.image}" />
+        <div class="preview__info">
+          <h3 class="preview__title">${book.title}</h3>
+          <div class="preview__author">${book.author}</div>
+        </div>
+      </button>
+    `;
   }
 }
 
+customElements.define('book-preview', BookPreview);
