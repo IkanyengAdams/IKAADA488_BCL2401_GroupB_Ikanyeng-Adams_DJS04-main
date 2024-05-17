@@ -70,52 +70,65 @@ populateDropDownOptions();
 
 // Function for color theme: either night or day
 function setColorTheme() {
-    // Initialize theme from local storage if available
-    const storedTheme = localStorage.getItem('theme');
-    if (storedTheme === 'night') {
-        document.documentElement.style.setProperty(
-            "--color-dark",
-            "255, 255, 255"
-        );
-        document.documentElement.style.setProperty("--color-light", "10, 10, 20");
-    } else {
-        document.documentElement.style.setProperty("--color-dark", "10, 10, 20");
-        document.documentElement.style.setProperty(
-            "--color-light",
-            "255, 255, 255"
-        );
-    }
+  document.querySelector("[data-settings-form]")
+.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const { theme } = Object.fromEntries(formData);
+  const storedTheme = localStorage.getItem('theme');
 
-    // Event listener for theme change
-    document.querySelector("[data-settings-form]")
-        .addEventListener("submit", (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const { theme } = Object.fromEntries(formData);
+  if (storedTheme === 'night') {
+      document.documentElement.style.setProperty(
+          "--color-dark",
+          "255, 255, 255"
+      );
+    document.documentElement.style.setProperty("--color-light", "10, 10, 20");
+} else {
+  document.documentElement.style.setProperty("--color-dark", "10, 10, 20");
+  document.documentElement.style.setProperty(
+      "--color-light",
+      "255, 255, 255"
+  );
 
-            // Store theme in local storage
-            localStorage.setItem('theme', theme);
+  
+}
 
-            // Apply selected theme
-            if (theme === "night") {
-                document.documentElement.style.setProperty(
-                    "--color-dark",
-                    "255, 255, 255"
-                );
-                document.documentElement.style.setProperty("--color-light", "10, 10, 20");
-            } else {
-                document.documentElement.style.setProperty("--color-dark", "10, 10, 20");
-                document.documentElement.style.setProperty(
-                    "--color-light",
-                    "255, 255, 255"
-                );
-            }
 
-            document.querySelector("[data-settings-overlay]").open = false;
-        });
+  if (theme === "night") {
+    document.documentElement.style.setProperty(
+      "--color-dark",
+      "255, 255, 255"
+    );
+    document.documentElement.style.setProperty("--color-light", "10, 10, 20");
+  } else {
+    document.documentElement.style.setProperty("--color-dark", "10, 10, 20");
+    document.documentElement.style.setProperty(
+      "--color-light",
+      "255, 255, 255"
+    );
+  }
+
+  document.querySelector("[data-settings-overlay]").open = false;
+});
+    
+    document.querySelector("[data-list-button]").innerText = `Show more (${
+      books.length - BOOKS_PER_PAGE
+    })`;
+    document.querySelector("[data-list-button]").disabled =
+      matches.length - page * BOOKS_PER_PAGE === 0;
+    
+    document.querySelector("[data-list-button]").innerHTML = `
+        <span>Show more</span>
+        <span class="list__remaining"> (${
+          matches.length - page * BOOKS_PER_PAGE > 0
+            ? matches.length - page * BOOKS_PER_PAGE
+            : 0
+        })</span>
+    `;
 }
 
 setColorTheme();
+
 
 // Event Listerners
 document.querySelector("[data-search-cancel]").addEventListener("click", () => {
