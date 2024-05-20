@@ -1,4 +1,4 @@
-function handleShowMore() {
+export default function handleShowMore() {
   const fragment = document.createDocumentFragment();
 
   for (const { author, id, image, title } of matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE)) {

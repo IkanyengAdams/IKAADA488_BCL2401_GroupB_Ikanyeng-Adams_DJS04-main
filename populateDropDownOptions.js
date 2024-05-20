@@ -1,4 +1,5 @@
-function populateDropDownOptions() {
+
+export default function populateDropDownOptions() {
   const genreHtml = document.createDocumentFragment();
   const firstGenreElement = document.createElement("option");
   firstGenreElement.value = "any";

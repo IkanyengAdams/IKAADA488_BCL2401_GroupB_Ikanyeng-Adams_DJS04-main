@@ -1,4 +1,4 @@
-function handleSearch(event) {
+export default function handleSearch(event) {
   event.preventDefault();
   const formData = new FormData(event.target);
   const filters = Object.fromEntries(formData);
