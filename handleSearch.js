@@ -1,4 +1,6 @@
-export default function handleSearch(event) {
+import { books, authors, genres, BOOKS_PER_PAGE } from "../data.js";
+
+export function handleSearch(event) {
   event.preventDefault();
   const formData = new FormData(event.target);
   const filters = Object.fromEntries(formData);

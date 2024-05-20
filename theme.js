@@ -1,42 +1,18 @@
-class ThemeToggle extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: 'open' });
-    this.attachEventListeners();
-  }
+export function setColorTheme() {
+  document.querySelector("[data-settings-form]").addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const { theme } = Object.fromEntries(formData);
+    const storedTheme = localStorage.getItem('theme');
 
-  attachEventListeners() {
-    this.shadowRoot.querySelector('form').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const formData = new FormData(event.target);
-      const { theme } = Object.fromEntries(formData);
+    if (storedTheme === 'night' || theme === 'night') {
+      document.documentElement.style.setProperty("--color-dark", "255, 255, 255");
+      document.documentElement.style.setProperty("--color-light", "10, 10, 20");
+    } else {
+      document.documentElement.style.setProperty("--color-dark", "10, 10, 20");
+      document.documentElement.style.setProperty("--color-light", "255, 255, 255");
+    }
 
-      localStorage.setItem('theme', theme);
-
-      document.documentElement.style.setProperty('--color-dark', theme === 'night' ? '255, 255, 255' : '10, 10, 20');
-      document.documentElement.style.setProperty('--color-light', theme === 'night' ? '10, 10, 20' : '255, 255, 255');
-
-      this.shadowRoot.querySelector("[data-settings-overlay]").open = false;
-    });
-  }
-
-  connectedCallback() {
-    this.render();
-  }
-
-  render() {
-    this.shadowRoot.innerHTML = `
-      <form data-settings-form>
-        <label>
-          <input type="radio" name="theme" value="day"> Day
-        </label>
-        <label>
-          <input type="radio" name="theme" value="night"> Night
-        </label>
-        <button type="submit">Apply</button>
-      </form>
-    `;
-  }
+    document.querySelector("[data-settings-overlay]").open = false;
+  });
 }
-
-customElements.define('theme-toggle', ThemeToggle);
