@@ -102,8 +102,7 @@ function handleShowMore() {
 
   document.querySelector("[data-list-items]").appendChild(fragment);
   page += 1;
-
-  
+  updateShowMoreButton();
 }
 
 
@@ -146,8 +145,8 @@ function initialize() {
   populateDropDownOptions();
   setColorTheme();
   setupEventListeners();
-  updateShowMoreButton();
   renderBooks();
+  handleShowMore();
 }
 
 
