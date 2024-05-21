@@ -147,7 +147,6 @@ function initialize() {
   setColorTheme();
   setupEventListeners();
   updateShowMoreButton();
-  updateShowMoreButton();
   renderBooks();
 }
 
