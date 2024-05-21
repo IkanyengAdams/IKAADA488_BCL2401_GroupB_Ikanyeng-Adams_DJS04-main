@@ -1,5 +1,6 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from "./data.js";
  
+// Function to create HTML fragments for genres or authors
  export function populateDropDownOptions() {
   const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");

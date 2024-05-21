@@ -4,27 +4,11 @@ import { populateDropDownOptions } from "./populateDropDownOptions.js";
 import { handleSearch } from "./handleSearch.js";
 import { setColorTheme } from "./theme.js";
 
-
 // Global variables
 let page = 1;
 let matches = books;
 
-// Function to render book previews
 
-
-
-// Function to create HTML fragments for genres or authors
-
-
-
-
-// Function for color theme: either night or day
-
-
-
-
-
-// Event Listerners
 function setupEventListeners() {
   document.querySelector("[data-search-cancel]").addEventListener("click", () => {
     document.querySelector("[data-search-overlay]").open = false;
@@ -164,7 +148,7 @@ function initialize() {
   setupEventListeners();
   updateShowMoreButton();
   updateShowMoreButton();
-  renderBooks()
+  renderBooks();
 }
 
 

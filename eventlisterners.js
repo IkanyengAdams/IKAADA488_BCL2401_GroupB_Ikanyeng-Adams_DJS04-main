@@ -1,3 +1,4 @@
+// Event Listerners
 function setupEventListeners() {
   document.querySelector("[data-search-cancel]").addEventListener("click", () => {
     document.querySelector("[data-search-overlay]").open = false;

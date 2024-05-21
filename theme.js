@@ -1,3 +1,4 @@
+// Function for color theme: either night or day
 export function setColorTheme() {
   document.querySelector("[data-settings-form]").addEventListener("submit", (event) => {
     event.preventDefault();

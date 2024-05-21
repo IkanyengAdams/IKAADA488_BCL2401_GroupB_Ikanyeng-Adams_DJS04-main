@@ -1,5 +1,6 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from "./data.js";
 
+// Function to render book previews
 export function renderBookPreviews() {
   let matches = books;
   const starting = document.createDocumentFragment();
